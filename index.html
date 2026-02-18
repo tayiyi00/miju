@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Miju Live SDK Demo</title>
+</head>
+<body>
+  <h1>蜜桔直播 SDK 示例</h1>
+
+  <input id="room" placeholder="Room ID" />
+  <input id="user" placeholder="Username" />
+  <button onclick="join()">Join Room</button>
+
+  <br><br>
+
+  <input id="msg" placeholder="Message" />
+  <button onclick="send()">Send</button>
+
+  <script src="../sdk/miju-live-sdk.js"></script>
+  <script>
+    const sdk = new MijuLiveSDK("ws://localhost:8080");
+
+    sdk.connect();
+
+    function join() {
+      const room = document.getElementById("room").value;
+      const user = document.getElementById("user").value;
+      sdk.joinRoom(room, user);
+    }
+
+    function send() {
+      const msg = document.getElementById("msg").value;
+      sdk.sendMessage(msg);
+    }
+  </script>
+</body>
+</html>
